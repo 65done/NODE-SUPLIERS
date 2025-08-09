@@ -1,0 +1,3100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Merchants Supplies(NMS)</title>
+    <meta name="description" content="Kenya's leading supplier of quality bicycles,electronics,measuring equipment,spares and appliances,Free delivery nationwide.">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0e703d">
+    <meta name="msapplication-TileColor" content="#0e703d">
+    <meta name="theme-color" content="#0e703d">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+     
+    <style>
+            .whatsapp-button {
+        display: inline-block;
+        background-color: #25D366;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .whatsapp-button:hover {
+        background-color: #128C7E;
+    }
+
+        :root {
+            /* Color Scheme */
+            --primary: #0e703d; /* TEAMO Green */
+            --primary-light: #2e8b57;
+            --primary-dark: #0a5c32;
+            --secondary: #f7931e; /* Accent orange */
+            --accent: #2c7be5; /* Blue for CTAs */
+            --text-dark: #2d3748;
+            --text-medium: #4a5568;
+            --text-light: #f8f9fa;
+            --bg-light: #f8f9fa;
+            --bg-dark: #1a202c;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary: #2e8b57;
+            --primary-light: #3da76a;
+            --primary-dark: #1e6e3e;
+            --text-dark: #f8f9fa;
+            --text-medium: #e2e8f0;
+            --text-light: #1a202c;
+            --bg-light: #1a202c;
+            --bg-dark: #0d1117;
+            --card-bg: #2d3748;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            background-attachment: fixed;
+        }
+            [data-theme="dark"] body {
+            background: linear-gradient(135deg, #1a202c 0%, #0d1117 100%);
+}
+
+       
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e07c0c;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background-color: #1a68d1;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] header {
+            background-color: var(--bg-dark);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        [data-theme="dark"] nav a {
+            color: white;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(14, 112, 61, 0.9), rgba(46, 139, 87, 0.9)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        [data-theme="dark"] .products {
+            background-color: var(--bg-dark);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .category-tab {
+            padding: 8px 20px;
+            background-color: var(--bg-light);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .category-tab.active, .category-tab:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        .product-actions .btn {
+            flex: 1;
+            padding: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(14, 112, 61, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        [data-theme="dark"] .contact {
+            background-color: var(--bg-dark);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(14, 112, 61, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .footer-links h3, .footer-contact h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #e2e8f0;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #e2e8f0;
+        }
+
+        .footer-contact i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .theme-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .theme-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .theme-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .theme-slider:before {
+            transform: translateX(30px);
+        }
+
+        .theme-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: white;
+        }
+
+        .sun-icon {
+            left: 8px;
+        }
+
+        .moon-icon {
+            right: 8px;
+        }
+
+        /* Cart Styles */
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        [data-theme="dark"] .cart-btn {
+            color: var(--text-light);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--secondary);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: var(--card-bg);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        [data-theme="dark"] .cart-header {
+            border-bottom-color: #444;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        [data-theme="dark"] .close-cart {
+            color: var(--text-light);
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        [data-theme="dark"] .cart-item {
+            border-bottom-color: #444;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-item-qty {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+
+        [data-theme="dark"] .cart-item-qty {
+            background-color: var(--bg-dark);
+            border-color: #444;
+            color:#25D366;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #e53e3e;
+            cursor: pointer;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-medium);
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 90px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--card-bg);
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.4s ease;
+            }
+            
+            [data-theme="dark"] nav {
+                background-color: var(--bg-dark);
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            }
+            
+            nav.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .cart-sidebar {
+                max-width: 100%;
+            }
+            
+            .whatsapp-float {
+                right: 30px;
+                bottom: 100px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                margin-bottom: 30px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .product-img {
+    background-color: #da0d0d;
+    color: transparent;
+    position: relative;
+}
+
+.product-img:after {
+    content: "Image not available";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+    font-size: 14px;
+}
+/* About Section */
+.about {
+    padding: 80px 0;
+    background-color: var(--bg-light);
+}
+
+[data-theme="dark"] .about {
+    background-color: var(--bg-dark);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-text h3 {
+    color: var(--primary);
+    margin: 20px 0 10px;
+}
+
+.about-text ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.about-text li {
+    margin-bottom: 8px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-image {
+        order: -1;
+    }
+}
+/* Glass Card Effect */
+.card, .product-card, .feature-card, .testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Dark mode glass effect */
+[data-theme="dark"] .card,
+[data-theme="dark"] .product-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .testimonial-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hover effects */
+.card:hover, 
+.product-card:hover, 
+.feature-card:hover, 
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+/* Add to your CSS */
+.form-highlight {
+    animation: pulse 2s ease-in-out;
+    box-shadow: 0 0 0 3px rgba(14, 112, 61, 0.5);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(14, 112, 61, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(14, 112, 61, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(14, 112, 61, 0); }
+}
+/* Cart Heading Styles */
+.cart-heading {
+    color: var(--text-dark); /* Default color for light mode */
+    margin: 0;
+    font-size: 1.2rem;
+    display: inline-block;
+}
+
+[data-theme="dark"] .cart-heading {
+    color: var(--text-light); /* Color for dark mode */
+}
+
+/* If you want to style the emoji differently */
+.cart-heading::before {
+    content: "🛒";
+    margin-right: 5px;
+}
+
+/* Remove the emoji from the HTML since we're using CSS now */
+.cart-heading {
+    font-family: 'Poppins', sans-serif;
+}
+.cart-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+}
+
+/* Optional: Add hover effect */
+.cart-btn:hover {
+    background-color: rgba(14, 112, 61, 0.1);
+}
+
+[data-theme="dark"] .cart-btn:hover {
+    background-color: rgba(245, 8, 8, 0.1);
+}
+        /* [Previous CSS content remains the same - shortened for brevity] */
+        /* ... All your existing CSS styles ... */
+        
+        /* Add this new style for success message */
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            border: 1px solid #c3e6cb;
+        }
+         .map-container {
+        width: 300%;
+        max-width: 800px; /* Adjust this value to make it wider */
+        height: 800px; /* Adjust this value to make it taller */
+        margin: 200px 0;
+    }
+    
+    .location-map {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    
+    .fa-map-marker-alt {
+        margin-right: 5px;
+        color: #ff0000; /* Optional: makes the marker icon red */
+    }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="image2323.png" alt="Node Merchants Supplies Logo" id="logo-img">
+                <span class="logo-text">Node Merchants Supplies </span>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="cart-btn" id="cart-btn">
+              <h2 id="cart-heading">🛒 Cart</h2>
+             <span class="cart-count" id="cart-count">0</span>
+              </button>
+                
+                <label class="theme-toggle">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="theme-slider"></span>
+                    <span class="theme-icon sun-icon">☀️</span>
+                    <span class="theme-icon moon-icon">🌙</span>
+                </label>
+                
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+      <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Premium quality supplies for Kenya</h1>
+            <p>Quality Appliances, Electronics,Spares,Measuring Equipment at Competitive Prices</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn btn-secondary">View Products</a>
+                <a href="#contact" class="btn btn-outline">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Node Merchants?</h2>
+                <p>We provide exceptional quality and service to all our customers</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Quality Materials</h3>
+                    <p>All our materials meet the highest industry standards for durability and performance.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Free Delivery</h3>
+                    <p>We offer free delivery within Nairobi and affordable rates nationwide for your convenience.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>1-Year Warranty</h3>
+                    <p>Our products come with an industry-leading 1-year warranty against manufacturing defects.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👷</div>
+                    <h3>Expert Installation</h3>
+                    <p>Our team of certified professionals ensures perfect installation every time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+                <p>Browse our wide selection of quality supplies</p>
+            </div>
+            
+            <div class="category-tabs" id="category-tabs">
+                <div class="category-tab active" data-category="all">All Products</div>
+                <div class="category-tab" data-category="Appliances">Appliances</div>
+                <div class="category-tab" data-category="Spares">Spares</div>
+                <div class="category-tab" data-category="Construction & Repairs">Construction & Repairs</div>
+                <div class="category-tab" data-category="Bicycles">Bicycles</div>
+                <div class="category-tab" data-category="Measuring Equipment">Measuring Equipment</div>
+ 
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+     <!-- About Us Section -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="section-title">
+            <h2>About Node Merchants Supplies</h2>
+            <p>Our story and commitment to supply of quality appliances </p>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Building Trust Since 2022</h3>
+                <p> has been providing premium quality supplies across Kenya for close to half a decade. What began as a small family business has grown into one of the most trusted names in the supplies industry.</p>
+                
+                <h3>Our Mission</h3>
+                <p>To deliver high-quality, durable appliances at competitive prices while providing exceptional customer service and expert installation guidance.</p>
+                
+                <h3>Why Choose Us</h3>
+                <ul>
+                    <li>3+ years industry experience</li>
+                    <li>Quality certified materials</li>
+                    <li>Free professional consultations</li>
+                    <li>Nationwide delivery network</li>
+                    <li>After-sales support</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Hear from satisfied clients across Kenya</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Great quality products and excellent customer service. Will definitely order again!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>John Maweu, Athi River</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>NMS has been a depandable partner for years.Their appliances' conditions are far better than any other brand we've tried.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Sarah Mbaabu, Syokimau</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Node Merchants wako sawa kabisa. Bidhaa zao ni mufti sana na hudumu, naeza warecommend siku zote!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Daudi Kimani, Kikuyu</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- [Previous HTML content remains the same - shortened for brevity] -->
+    <!-- ... All your existing HTML sections ... -->
+    
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Contact us for quotes, questions, or to place an order</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Our Contacts</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Luthuli Avenue and River Road Junction,Nairobi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p><a href="tel:+254724632344">+254 724 632 344</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:azuxhmanman@gmail.com">azuxhmanman@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Monday - Saturday: 7:00 AM - 8:00 PM<br>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <div id="success-message" class="success-message">
+                        Thank you! Your message has been sent successfully.
+                    </div>
+                    <form id="contact-form" method="POST" action="insert.php">
+                        <div class="form-group">
+                            <label for="full_name">Full Name</label>
+                            <input type="text" id="full_name" name="full_name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number</label>
+                            <input type="tel" id="phone_number" name="phone_number" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cart_summary">Cart Summary</label>
+                            <textarea id="cart_summary" name="cart_summary" class="form-control" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message On Further Instructions</label>
+                            <textarea id="message" name="your_message_on_further_instructions" class="form-control"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">Node Merchants Supplies</a>
+                    <p>Kenya's premier supplier of quality appliances since 2022. We pride ourselves on excellent customer service and top-quality products.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#products">Bicycles</a></li>
+                        <li><a href="#products">Spares</a></li>
+                        <li><a href="#products">Measuring Equipment</a></li>
+                        <li><a href="#products">Appliances</a></li>
+                        <li><a href="#products">Construction & Repairs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>Luthuli Avenue and River Road Junction,Nairobi</p>
+                    <p><i class="fas fa-phone"></i> +254 724 632 344</p>
+                    <p><i class="fas fa-envelope"></i> azuxhmanman@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 7AM-8PM</p>
+                </div>
+            </div>
+            <h3>Our Location</h3>
+    <p>Visit us at Juction River Road:</p>
+    <p><i class="fas fa-map-marker-alt"></i> Luthuli Aveneu thade house, Nairobi</p>
+   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.810142396765!2d36.82021431475388!3d-1.282271535978028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d7d4d338e5%3A0x7a7a9b3e0d1e1b1d!2sLuthuli%20Avenue%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1620000000000!5m2!1sen!2ske" class="location-map" allowfullscreen="" loading="lazy"></iframe>\
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Node Merchants Supplies(NMS). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="close-cart">×</button>
+        </div>
+        
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here -->
+        </div>
+        
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total">KSh 0</span>
+        </div>
+        
+        <button class="btn" id="checkout-btn">Proceed to Checkout</button>
+    </div>
+    
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top">↑
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254724632344" class="whatsapp-float" target="_blank" aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i> <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"/>
+    </a>
+    
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    
+    <!-- [Rest of your HTML content remains the same] -->
+    <!-- ... Footer and other sections ... -->
+    
+    <!-- JavaScript -->
+    <script>
+     // DOM Elements
+        const themeToggle = document.getElementById('theme-toggle');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        const cartBtn = document.getElementById('cart-btn');
+        const closeCart = document.getElementById('close-cart');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const backToTop = document.getElementById('back-to-top');
+        const contactForm = document.getElementById('contact-form');
+        
+        // Theme Toggle (simplified)
+themeToggle.addEventListener('change', function() {
+    if (this.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
+});
+        
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            themeToggle.checked = true;
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        
+        // Mobile Menu Toggle
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+        
+        // Cart Toggle
+        cartBtn.addEventListener('click', openCart);
+        closeCart.addEventListener('click', closeCartFunc);
+        cartOverlay.addEventListener('click', closeCartFunc);
+        
+        function openCart() {
+            cartSidebar.classList.add('active');
+            cartOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeCartFunc() {
+            cartSidebar.classList.remove('active');
+            cartOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Back to Top Button
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        // [Previous JavaScript remains the same until the form submission part]
+        
+        // Checkout button functionality
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add some products before checking out.');
+                return;
+            }
+            
+            // Close cart
+            closeCartFunc();
+            
+            // Scroll to contact form
+            document.querySelector('#contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+            
+            // Generate order summary for message field
+            let orderSummary = 'ORDER DETAILS:\n\n';
+            let total = 0;
+            
+            cart.forEach(item => {
+                orderSummary += `${item.name} x ${item.quantity} = KSh ${(item.price * item.quantity).toLocaleString()}\n`;
+                total += item.price * item.quantity;
+            });
+            
+            orderSummary += `\nTOTAL: KSh ${total.toLocaleString()}`;
+            
+            // Populate the form fields
+            document.getElementById('cart_summary').value = orderSummary;
+            
+            // Highlight the form
+            const contactFormElement = document.querySelector('.contact-form');
+            contactFormElement.classList.add('form-highlight');
+            setTimeout(() => {
+                contactFormElement.classList.remove('form-highlight');
+            }, 2000);
+            
+            // Focus on name field
+            document.getElementById('full_name').focus();
+        });
+
+        // Handle form submission response
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('success-message').style.display = 'block';
+                    form.reset();
+                    cart = [];
+                    updateCart();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById('success-message').style.display = 'none';
+                    }, 5000);
+                } else {
+                    alert('There was an error submitting your form. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your form. Please try again.');
+            });
+        });
+
+        // [Rest of your JavaScript remains the same]
+
+           // Product Data
+const products = [
+    // Mabati Products
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "appliance1.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 2,
+        name: "Versatile Matte 30g",
+        price: 650,
+        category: "Appliances",
+        image: "appliance2.jpg",
+        description: "High-quality matte finish roofing sheets, 30 gauge."
+    },
+    {
+        id: 3,
+        name: "Versatile Matte 28g",
+        price: 750,
+        category: "Appliances",
+        image: "appliance3.jpg",
+        description: "Premium matte finish roofing sheets, thicker 28 gauge."
+    },
+    {
+        id: 4,
+        name: "Versatile Glossy 30g",
+        price: 620,
+        category: "Appliances",
+        image: "appliance4.jpg",
+        description: "Glossy finish roofing sheets, 30 gauge thickness."
+    },
+    {
+        id: 5,
+        name: "Versatile Glossy 28g",
+        price: 720,
+        category: "Appliances",
+        image: "appliance5.jpg",
+        description: "Premium glossy finish roofing sheets, 28 gauge."
+    },
+    {
+        id: 6,
+        name: "Box Profile Glossy 30g",
+        price: 550,
+        category: "Appliances",
+        image: "appliance6.jpg",
+        description: "Classic box profile design, glossy finish, 30 gauge."
+    },
+    {
+        id: 7,
+        name: "Box Profile Glossy 28g",
+        price: 680,
+        category: "Appliances",
+        image: "appliance7.jpg",
+        description: "Durable box profile sheets, glossy finish, 28 gauge."
+    },
+    {
+        id: 8,
+        name: "Corrugated Glossy 30g",
+        price: 550,
+        category: "Appliances",
+        image: "appliance8.jpg",
+        description: "Traditional corrugated sheets, glossy finish, 30 gauge."
+    },
+    {
+        id: 9,
+        name: "Corrugated Glossy 28g",
+        price: 680,
+        category: "Appliances",
+        image: "appliance9.jpg",
+        description: "Heavy-duty corrugated sheets, glossy finish, 28 gauge."
+    },
+    {
+        id: 10,
+        name: "Eurotile Matte 30g",
+        price: 680,
+        category: "Appliances",
+        image: "appliance10.jpg",
+        description: "Elegant tile-like appearance, matte finish, 30 gauge."
+    },
+    {
+        id: 11,
+        name: "Eurotile Matte 28g",
+        price: 750,
+        category: "spares",
+        image: "appliance11.jpg", // Note: Same image as 30g - you may want to use a different image
+        description: "Premium tile-like roofing, matte finish, 28 gauge."
+    },
+    {
+        id: 12,
+        name: "Roman Tile Matte 30g",
+        price: 680,
+        category: "Appliances",
+        image: "appliance12.jpg",
+        description: "Classic Roman tile design, matte finish, 30 gauge."
+    },
+    {
+        id: 13,
+        name: "Roman Tile Matte 28g",
+        price: 780,
+        category: "Appliances",
+        image: "appliance13.jpg",
+        description: "Premium Roman tile design, matte finish, 28 gauge."
+    },
+    
+    {
+        id: 14,
+        name: "PVC Gutters (4M/pc,6pcs/bag)",
+        price: 1450,
+        category: "Appliances",
+        image: "appliance14.jpg",
+        description: "Durable PVC gutters, 4 meters per piece, 6 pieces per bag."
+    },
+    {
+        id: 15,
+        name: "Downspout (4M/pc,6pcs/bag)",
+        price: 1250,
+        category: "Appliances",
+        image: "appliance15.jpg",
+        description: "High-quality downspouts, 4 meters per piece, 6 pieces per bag."
+    },
+    {
+        id: 16,
+        name: "Drop Outlet (14pcs/ctn)",
+        price: 500,
+        category: "Appliances",
+        image: "appliance16.jpg",
+        description: "Essential gutter component, 14 pieces per carton."
+    },
+    {
+        id: 17,
+        name: "Hanger Single Hole (220pcs/ctn)",
+        price: 150,
+        category: "Appliances",
+        image: "appliance17.jpg",
+        description: "Single hole hangers for secure gutter installation, 220 pieces per carton."
+    },
+    {
+        id: 18,
+        name: "135°/90° Outside Corner (10pcs/ctn)",
+        price: 500,
+        category: "Appliances",
+        image: "appliance18.jpg",
+        description: "For perfect outside corner connections, 10 pieces per carton."
+    },
+    {
+        id: 19,
+        name: "90° Inside Corner (8pcs/ctn)",
+        price: 500,
+        category: "Appliances",
+        image: "appliance19.jpg",
+        description: "For seamless inside corner connections, 8 pieces per carton."
+    },
+    {
+        id: 20,
+        name: "90° Inside Corner (8pcs/ctn)",
+        price: 5000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0028.jpg",
+    },
+      {
+        id: 21,
+        name: "90° Inside Corner (8pcs/ctn)",
+        price: 5000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0029.jpg",
+    },
+       {
+        id: 22,
+        price: 5000,
+        category: "spares",
+        image: "IMG-20250804-WA0030.jpg",
+    },
+       {
+        id: 23,
+        price: 5000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0031.jpg",
+    },
+       {
+        id: 24,
+        price: 5000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0032.jpg",
+    },
+       {
+        id: 25,
+        price: 5000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0033.jpg",
+    },
+       {
+        id: 26,
+        price: 5000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0034.jpg",
+    },
+       {
+        id: 27,
+        price: 5000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0035.jpg",
+    },
+       {
+        id: 28,
+        price: 5000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0036.jpg",
+    },
+       {
+        id: 29,
+        price: 5000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0037.jpg",
+    },
+    {
+        id: 30,
+        name: "Converter (45pcs/box)",
+        price: 350,
+        category: "Appliances",
+        image: "IMG-20250804-WA0038.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+     {
+        id: 31,
+        name: "Converter (45pcs/box)",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0039.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+      {
+        id: 32,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0040.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 33,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0041.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 34,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0042.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 35,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0043.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 36,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0044.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 37,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0045.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 38,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0046.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 39,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0047.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 40,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0048.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 41,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0049.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 42,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0050.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 43,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0051.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 44,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0052.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 45,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0053.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 46,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0054.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 47,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0055.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 48,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0056.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 49,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0057.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 50,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0058.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0059.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0060.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0061.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0062.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0063.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0064.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0065.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0066.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0067.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0068.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0069.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0070.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0071.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0072.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0073.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0074.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0075.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0076.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0077.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0078.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0079.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0080.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0081.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0082.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0083.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+      {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0084.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0085.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0086.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0087.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0088.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0089.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0090.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0091.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0092.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0093.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0094.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0095.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0096.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0097.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0098.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0099.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+    {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0100.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0101.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0102.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0103.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0104.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0106.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0107.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "Sugarcane Juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250804-WA0108.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "electronic",
+        price: 35000,
+        category: "Appliances",
+        image: "electronic1.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "electronic",
+        price: 35000,
+        category: "Appliances",
+        image: "electronic2.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "electronic",
+        price: 35000,
+        category: "Appliances",
+        image: "electronic3.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "electronic",
+        price: 35000,
+        category: "Appliances",
+        image: "electronic4.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "electronic",
+        price: 35000,
+        category: "Appliances",
+        image: "electronic5.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "electronic",
+        price: 35000,
+        category: "Appliances",
+        image: "electronic6.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+        
+    },
+    //bikes
+     {
+        id: 30,
+        name: "Girl bike size 20",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike1.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+      {
+        id: 30,
+        name: "Girl bike size 20",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike2.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+      {
+        id: 30,
+        name: "Girl bike size 20",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike3.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+      {
+        id: 30,
+        name: "Luta size 20 - all colours",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike4.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+     {
+        id: 30,
+        name: "Luta size 20 - all colours",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike5.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+     {
+        id: 30,
+        name: "Luta size 20 - all colours",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike6.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+     {
+        id: 30,
+        name: "Luta size 20 - all colours",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike7.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+     {
+        id: 30,
+        name: "Luta size 20 with reflector",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike8.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+     {
+        id: 30,
+        name: "Luta size 20 with reflector",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike9.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+     {
+        id: 30,
+        name: "Luta size 20 with reflector",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike10.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+     {
+        id: 30,
+        name: "Luta size 20 with reflector",
+        price: 8500,
+        category: "Bicycles",
+        image: "bike11.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+    //spares
+    
+      {
+        id: 30,
+        name: "spares",
+        price: 5000,
+        category: "Spares",
+        image: "spare1.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+     {
+        id: 30,
+        name: "CCTV camera",
+        price: 3500,
+        category: "appliances",
+        image: "spare2.jpg",
+        description: "For transitioning between different downspout sizes, 45 pieces per box."
+    },
+    //construction & repair 
+     {
+        id: 1,
+        name: "50 mtrs sprayer pipe",
+        price: 5500,
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0004.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Hose pipe",
+        price: 35000,
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0005.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Hose pipe",
+        price: 35000,
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0006.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+        
+    }, 
+     {
+        id: 1,
+        name: "Canvas delivery hose pipes",
+        price: "5000, 8500",
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0007.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Rutan solar pump 400w 50m",
+        price:"0.5hp(head18m )8500,   1.0hp  (35m head)10500",
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0008.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Max polar submersible electric pump",
+         price:"0.5hp(18m head)8500,   1.0hp  (35m head)10500",
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0009.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Max polar submersible sewer pumps",
+        price:"2.0hp (230L/min height 25m)17000,   3.0hp (310L/min height 35m)20000",
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0010.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Meakida demolition harmer",
+        price: 18000,
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0011.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+ {
+        id: 1,
+        name: "Sugarcane juicer",
+        price: 35000,
+        category: "Appliances",
+        image: "IMG-20250806-WA0012.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Dera 4 in 1 trimmer brush cutter",
+        price: 24500,
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0013.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Hose pipe",
+        price: 5000,
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0014.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Dera 7 circular saw ",
+        price: 7500,
+        category: "Construction & Repairs",
+        image: "IMG-20250806-WA0015.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Vitron smart TV 43",
+        price: 2000,
+        category: "Appliances",
+        image: "IMG-20250806-WA0016.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },
+     {
+        id: 1,
+        name: "Nunix hot and normal dispenser",
+        price: 3500,
+        category: "Appliances",
+        image: "IMG-20250806-WA0017.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Ailyons 2 burner",
+        price: 3000,
+        category: "Appliances",
+        image: "IMG-20250806-WA0018.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    },  
+     {
+        id: 1,
+        name: "Kitchen scale digital",
+        price: 700,
+        category: "Appliances",
+        image: "IMG-20250806-WA0019.jpg",
+        description: "Premium stone-coated steel roofing with 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Assembled executive office chair",
+        price: 5000,
+        category: "Spares",
+        image: "IMG-20250806-WA0020.jpg",
+        description: "Premium with comfotable headrest 15-year warranty."
+    }, 
+     {
+        id: 1,
+        name: "Secretarial mesh office char with headrest ",
+        price: 7500,
+        category: "Spares",
+        image: "IMG-20250806-WA0021.jpg",
+        description: "Premium with comfotable headrest 15-year warranty."
+    }, 
+     
+];
+        
+        // Cart Functionality
+        let cart = [];
+        
+        // Render Products
+        function renderProducts(category = 'all') {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+            
+            const filteredProducts = category === 'all' 
+                ? products 
+                : products.filter(product => product.category === category);
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">KSh ${product.price.toLocaleString()}</div>
+                        <div class="product-meta">
+                            <span>Per ${product.category === 'mabati' ? 'sheet' : 'piece'}</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://wa.me/254724632344?text=I%20want%20to%20order%20${encodeURIComponent(product.name)}%20for%20KSh%20${product.price.toLocaleString()}" 
+                               class="whatsapp-button" target="_blank">
+                               Order via WhatsApp
+                            </a>
+                            <button class="btn btn-outline" onclick="addToCart(${product.id})">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+        
+        // Category Tabs
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelector('.category-tab.active').classList.remove('active');
+                this.classList.add('active');
+                renderProducts(this.dataset.category);
+            });
+        });
+        
+        // Add to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showNotification(`${product.name} added to cart`);
+        }
+        
+        // Update Cart
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const cartCount = document.getElementById('cart-count');
+            
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+                cartTotal.textContent = '0';
+                cartCount.textContent = '0';
+                return;
+            }
+            
+            let total = 0;
+            let count = 0;
+            
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <h4 class="cart-item-title">${item.name}</h4>
+                        <div class="cart-item-price">KSh ${(item.price * item.quantity).toLocaleString()}</div>
+                        <div class="cart-item-actions">
+                            <button onclick="decreaseQuantity(${item.id})">-</button>
+                            <input type="number" value="${item.quantity}" min="1" class="cart-item-qty" onchange="updateQuantity(${item.id}, this.value)">
+                            <button onclick="increaseQuantity(${item.id})">+</button>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">Remove</button>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+                
+                total += item.price * item.quantity;
+                count += item.quantity;
+            });
+            
+            cartTotal.textContent = total.toLocaleString();
+            cartCount.textContent = count;
+        }
+        
+        // Cart Quantity Functions
+        function increaseQuantity(productId) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += 1;
+                updateCart();
+            }
+        }
+        
+        function decreaseQuantity(productId) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                } else {
+                    removeFromCart(productId);
+                }
+                updateCart();
+            }
+        }
+        
+        function updateQuantity(productId, quantity) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity = parseInt(quantity) || 1;
+                updateCart();
+            }
+        }
+        
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+        // Checkout
+document.getElementById('checkout-btn').addEventListener('click', function() {
+    if (cart.length === 0) {
+        alert('Your cart is empty. Please add some products before checking out.');
+        return;
+    }
+    
+    // Close cart
+    closeCartFunc();
+    
+    // Scroll to contact form
+    document.querySelector('#contact').scrollIntoView({
+        behavior: 'smooth'
+    });
+    
+    // Generate order summary for message field
+    let orderSummary = 'ORDER DETAILS:\n\n';
+    let total = 0;
+    
+    cart.forEach(item => {
+        orderSummary += `${item.name} x ${item.quantity} = KSh ${(item.price * item.quantity).toLocaleString()}\n`;
+        total += item.price * item.quantity;
+    });
+    
+    orderSummary += `\nTOTAL: KSh ${total.toLocaleString()}`;
+    
+    // Populate the form fields
+    document.getElementById('cart_summary').value = orderSummary;
+    
+    // Highlight the form
+    const contactFormElement = document.querySelector('.contact-form');
+    contactFormElement.classList.add('form-highlight');
+    setTimeout(() => {
+        contactFormElement.classList.remove('form-highlight');
+    }, 2000);
+    
+    // Focus on name field
+    document.getElementById('name').focus();
+});
+        
+        // Notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            
+            // Add notification style
+            const style = document.createElement('style');
+            style.textContent = `
+                .notification {
+                    position: fixed;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: var(--primary);
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--card-shadow);
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    z-index: 1000;
+                }
+                
+                .notification.show {
+                    opacity: 1;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+              });
+    </script>
+</body>
+
+</html>
