@@ -429,12 +429,58 @@
             display: flex;
             gap: 10px;
             flex-direction: column;
+            margin-top: 10px;
         }
 
-        .product-actions .btn {
-            flex: 1;
-            padding: 8px;
+        /* Like Button Styles */
+        .like-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        
+        .like-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #ccc;
+            transition: all 0.3s ease;
+        }
+        
+        .like-btn.liked {
+            color: #ff0000;
+        }
+        
+        .like-count {
             font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+        
+        /* Rating Styles */
+        .rating-container {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            margin-top: 5px;
+        }
+        
+        .rating-star {
+            color: #ccc;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .rating-star.active {
+            color: #ffc107;
+        }
+        
+        .rating-value {
+            font-size: 0.8rem;
+            margin-left: 5px;
+            color: var(--text-medium);
         }
 
         /* Testimonials */
@@ -1241,6 +1287,53 @@
         margin-right: 5px;
         color: #ff0000; /* Optional: makes the marker icon red */
     }
+
+    /* Search Container Styles */
+    .search-container {
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    #product-search {
+        padding: 10px;
+        width: 300px;
+        max-width: 80%;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+    #product-search:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(14, 112, 61, 0.2);
+    }
+
+    @media (max-width: 576px) {
+        #product-search {
+            width: 200px;
+        }
+    }
+
+    /* Notification Styles */
+    .notification {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--primary);
+        color: white;
+        padding: 12px 24px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .notification.show {
+        opacity: 1;
+    }
     </style>
 </head>
 <body>
@@ -1347,6 +1440,12 @@
                 <div class="category-tab" data-category="Measuring Equipment">Measuring Equipment</div>
  
             </div>
+
+            <!-- Search Container -->
+            <div class="search-container">
+                <input type="text" id="product-search" placeholder="Search products...">
+                <button onclick="searchProducts()" class="btn">Search</button>
+            </div>
             
             <div class="products-grid" id="products-grid">
                 <!-- Products will be loaded here via JavaScript -->
@@ -1428,9 +1527,6 @@
             </div>
         </div>
     </section>
-    
-    <!-- [Previous HTML content remains the same - shortened for brevity] -->
-    <!-- ... All your existing HTML sections ... -->
     
     <!-- Contact Section -->
     <section class="contact" id="contact">
@@ -1605,10 +1701,6 @@
     <!-- Font Awesome for icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
-    
-    <!-- [Rest of your HTML content remains the same] -->
-    <!-- ... Footer and other sections ... -->
-    
     <!-- JavaScript -->
     <script>
      // DOM Elements
@@ -1761,1110 +1853,1383 @@ themeToggle.addEventListener('change', function() {
             });
         });
 
-        // [Rest of your JavaScript remains the same]
-
-           // Product Data
-const products = [
-    // Mabati Products
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "appliance1.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 2,
-        name: "",
-        price: 7500,
-        category: "Appliances",
-        image: "appliance2.jpg",
-        description: "High-quality matte finish roofing sheets, 30 gauge."
-    },
-    {
-        id: 3,
-        name: "g",
-        price: 7500,
-        category: "Appliances",
-        image: "appliance3.jpg",
-        description: "Premium matte finish roofing sheets, thicker 28 gauge."
-    },
-    {
-        id: 4,
-        name: "",
-        price: 8000,
-        category: "Appliances",
-        image: "appliance4.jpg",
-        description: "Glossy finish roofing sheets, 30 gauge thickness."
-    },
-    {
-        id: 5,
-        name: "",
-        price: 10000,
-        category: "Appliances",
-        image: "appliance5.jpg",
-        description: "Premium glossy finish roofing sheets, 28 gauge."
-    },
-    {
-        id: 6,
-        name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "appliance6.jpg",
-        description: "Classic box profile design, glossy finish, 30 gauge."
-    },
-    {
-        id: 7,
-        name: "",
-        price: 8000,
-        category: "Appliances",
-        image: "appliance7.jpg",
-        description: "Durable box profile sheets, glossy finish, 28 gauge."
-    },
-    {
-        id: 8,
-        name: "",
-        price: 7500,
-        category: "Appliances",
-        image: "appliance8.jpg",
-        description: "Traditional corrugated sheets, glossy finish, 30 gauge."
-    },
-    {
-        id: 9,
-        name: "",
-        price: 7000,
-        category: "Appliances",
-        image: "appliance9.jpg",
-        description: "Heavy-duty corrugated sheets, glossy finish, 28 gauge."
-    },
-    {
-        id: 10,
-        name: "",
-        price: 9500,
-        category: "Appliances",
-        image: "appliance10.jpg",
-        description: "Elegant tile-like appearance, matte finish, 30 gauge."
-    },
-    {
-        id: 11,
-        name: "",
-        price: 7500,
-        category: "spares",
-        image: "appliance11.jpg", // Note: Same image as 30g - you may want to use a different image
-        description: "Premium tile-like roofing, matte finish, 28 gauge."
-    },
-    {
-        id: 12,
-        name: "",
-        price: 7500,
-        category: "Appliances",
-        image: "appliance12.jpg",
-        description: "Classic Roman tile design, matte finish, 30 gauge."
-    },
-    {
-        id: 13,
-        name: "",
-        price: 8000,
-        category: "Appliances",
-        image: "appliance13.jpg",
-        description: "Premium Roman tile design, matte finish, 28 gauge."
-    },
-    
-    {
-        id: 14,
-        name: "",
-        price: 7500,
-        category: "Appliances",
-        image: "appliance14.jpg",
-        description: "Durable PVC gutters, 4 meters per piece, 6 pieces per bag."
-    },
-    {
-        id: 15,
-        name: "",
-        price: 1250,
-        category: "Appliances",
-        image: "appliance15.jpg",
-        description: "High-quality downspouts, 4 meters per piece, 6 pieces per bag."
-    },
-    {
-        id: 16,
-        name: "",
-        price: 7500,
-        category: "Appliances",
-        image: "appliance16.jpg",
-        description: "Essential gutter component, 14 pieces per carton."
-    },
-    {
-        id: 17,
-        name: "",
-        price: 15000,
-        category: "Appliances",
-        image: "appliance17.jpg",
-        description: "Single hole hangers for secure gutter installation, 220 pieces per carton."
-    },
-    {
-        id: 18,
-        name: "",
-        price: 500,
-        category: "Appliances",
-        image: "appliance18.jpg",
-        description: "For perfect outside corner connections, 10 pieces per carton."
-    },
-    {
-        id: 19,
-        name: "",
-        price: 500,
-        category: "Appliances",
-        image: "appliance19.jpg",
-        description: "For seamless inside corner connections, 8 pieces per carton."
-    },
-    {
-        id: 20,
-        name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0028.jpg",
-    },
-      {
-        id: 21,
-        name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0029.jpg",
-    },
-       {
-        id: 22,
-        name: "",
-        price: 5000,
-        category: "spares",
-        image: "IMG-20250804-WA0030.jpg",
-    },
-       {
-        id: 23,
-         name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0031.jpg",
-    },
-       {
-        id: 24,
-        name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0032.jpg",
-    },
-       {
-        id: 25,
-        name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0033.jpg",
-    },
-       {
-        id: 26,
-        name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0034.jpg",
-    },
-       {
-        id: 27,
-        name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0035.jpg",
-    },
-       {
-        id: 28,
-        name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0036.jpg",
-    },
-       {
-        id: 29,
-        name: "",
-        price: 5000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0037.jpg",
-    },
-    {
-        id: 30,
-        name: "",
-        price: 350,
-        category: "Appliances",
-        image: "IMG-20250804-WA0038.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-     {
-        id: 31,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0039.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-      {
-        id: 32,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0040.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 33,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0041.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 34,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0042.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 35,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0043.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 36,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0044.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 37,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0045.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 38,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0046.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 39,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0047.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 40,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0048.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 41,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0049.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 42,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0050.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 43,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0051.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 44,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0052.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 45,
-        name: "r",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0053.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 46,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0054.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 47,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0055.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 48,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0056.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 49,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0057.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 50,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0058.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0059.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0060.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0061.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0062.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0063.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0064.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0065.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0066.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0067.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0068.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0069.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0070.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0071.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0072.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0073.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0074.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0075.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0076.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0077.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0078.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0079.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0080.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0081.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0082.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0083.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-      {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0084.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0085.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0086.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0087.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0088.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0089.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0090.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0091.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0092.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0093.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0094.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0095.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0096.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0097.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0098.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0099.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-    {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0100.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0101.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0102.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0103.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0104.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0106.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0107.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "Sugarcane Juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250804-WA0108.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "electronic",
-        price: 35000,
-        category: "Appliances",
-        image: "electronic1.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "electronic",
-        price: 35000,
-        category: "Appliances",
-        image: "electronic2.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "electronic",
-        price: 35000,
-        category: "Appliances",
-        image: "electronic3.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "electronic",
-        price: 35000,
-        category: "Appliances",
-        image: "electronic4.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "electronic",
-        price: 35000,
-        category: "Appliances",
-        image: "electronic5.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "electronic",
-        price: 35000,
-        category: "Appliances",
-        image: "electronic6.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-        
-    },
-    //bikes
-     {
-        id: 30,
-        name: "Girl bike size 20",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike1.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-      {
-        id: 30,
-        name: "Girl bike size 20",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike2.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-      {
-        id: 30,
-        name: "Girl bike size 20",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike3.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-      {
-        id: 30,
-        name: "Luta size 20 - all colours",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike4.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-     {
-        id: 30,
-        name: "Luta size 20 - all colours",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike5.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-     {
-        id: 30,
-        name: "Luta size 20 - all colours",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike6.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-     {
-        id: 30,
-        name: "Luta size 20 - all colours",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike7.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-     {
-        id: 30,
-        name: "Luta size 20 with reflector",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike8.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-     {
-        id: 30,
-        name: "Luta size 20 with reflector",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike9.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-     {
-        id: 30,
-        name: "Luta size 20 with reflector",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike10.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-     {
-        id: 30,
-        name: "Luta size 20 with reflector",
-        price: 8500,
-        category: "Bicycles",
-        image: "bike11.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-    //spares
-    
-      {
-        id: 30,
-        name: "spares",
-        price: 5000,
-        category: "Spares",
-        image: "spare1.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-     {
-        id: 30,
-        name: "CCTV camera",
-        price: 3500,
-        category: "appliances",
-        image: "spare2.jpg",
-        description: "For transitioning between different downspout sizes, 45 pieces per box."
-    },
-    //construction & repair 
-     {
-        id: 1,
-        name: "50 mtrs sprayer pipe",
-        price: 5500,
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0004.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Hose pipe",
-        price: 35000,
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0005.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Hose pipe",
-        price: 35000,
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0006.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-        
-    }, 
-     {
-        id: 1,
-        name: "Canvas delivery hose pipes",
-        price: "5000, 8500",
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0007.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Rutan solar pump 400w 50m",
-        price:"0.5hp(head18m )8500,   1.0hp  (35m head)10500",
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0008.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Max polar submersible electric pump",
-         price:"0.5hp(18m head)8500,   1.0hp  (35m head)10500",
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0009.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Max polar submersible sewer pumps",
-        price:"2.0hp (230L/min height 25m)17000,   3.0hp (310L/min height 35m)20000",
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0010.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Meakida demolition harmer",
-        price: 18000,
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0011.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
- {
-        id: 1,
-        name: "Sugarcane juicer",
-        price: 35000,
-        category: "Appliances",
-        image: "IMG-20250806-WA0012.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Dera 4 in 1 trimmer brush cutter",
-        price: 24500,
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0013.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Hose pipe",
-        price: 5000,
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0014.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Dera 7 circular saw ",
-        price: 7500,
-        category: "Construction & Repairs",
-        image: "IMG-20250806-WA0015.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Vitron smart TV 43",
-        price: 2000,
-        category: "Appliances",
-        image: "IMG-20250806-WA0016.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },
-     {
-        id: 1,
-        name: "Nunix hot and normal dispenser",
-        price: 3500,
-        category: "Appliances",
-        image: "IMG-20250806-WA0017.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Ailyons 2 burner",
-        price: 3000,
-        category: "Appliances",
-        image: "IMG-20250806-WA0018.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    },  
-     {
-        id: 1,
-        name: "Kitchen scale digital",
-        price: 700,
-        category: "Appliances",
-        image: "IMG-20250806-WA0019.jpg",
-        description: "Premium stone-coated steel roofing with 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Assembled executive office chair",
-        price: 5000,
-        category: "Spares",
-        image: "IMG-20250806-WA0020.jpg",
-        description: "Premium with comfotable headrest 15-year warranty."
-    }, 
-     {
-        id: 1,
-        name: "Secretarial mesh office char with headrest ",
-        price: 7500,
-        category: "Spares",
-        image: "IMG-20250806-WA0021.jpg",
-        description: "Premium with comfotable headrest 15-year warranty."
-    }, 
-     
-];
+        // Product Data with likes and ratings
+        const products = [
+            // Mabati Products
+            {
+                id: 1,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "appliance1.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 2,
+                name: "Versatile Matte 30g",
+                price: 650,
+                category: "Appliances",
+                image: "appliance2.jpg",
+                description: "High-quality matte finish roofing sheets, 30 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 3,
+                name: "Versatile Matte 28g",
+                price: 750,
+                category: "Appliances",
+                image: "appliance3.jpg",
+                description: "Premium matte finish roofing sheets, thicker 28 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 4,
+                name: "Versatile Glossy 30g",
+                price: 620,
+                category: "Appliances",
+                image: "appliance4.jpg",
+                description: "Glossy finish roofing sheets, 30 gauge thickness.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 5,
+                name: "Versatile Glossy 28g",
+                price: 720,
+                category: "Appliances",
+                image: "appliance5.jpg",
+                description: "Premium glossy finish roofing sheets, 28 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 6,
+                name: "Box Profile Glossy 30g",
+                price: 550,
+                category: "Appliances",
+                image: "appliance6.jpg",
+                description: "Classic box profile design, glossy finish, 30 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 7,
+                name: "Box Profile Glossy 28g",
+                price: 680,
+                category: "Appliances",
+                image: "appliance7.jpg",
+                description: "Durable box profile sheets, glossy finish, 28 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 8,
+                name: "Corrugated Glossy 30g",
+                price: 550,
+                category: "Appliances",
+                image: "appliance8.jpg",
+                description: "Traditional corrugated sheets, glossy finish, 30 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 9,
+                name: "Corrugated Glossy 28g",
+                price: 680,
+                category: "Appliances",
+                image: "appliance9.jpg",
+                description: "Heavy-duty corrugated sheets, glossy finish, 28 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 10,
+                name: "Eurotile Matte 30g",
+                price: 680,
+                category: "Appliances",
+                image: "appliance10.jpg",
+                description: "Elegant tile-like appearance, matte finish, 30 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 11,
+                name: "Eurotile Matte 28g",
+                price: 750,
+                category: "spares",
+                image: "appliance11.jpg", // Note: Same image as 30g - you may want to use a different image
+                description: "Premium tile-like roofing, matte finish, 28 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 12,
+                name: "Roman Tile Matte 30g",
+                price: 680,
+                category: "Appliances",
+                image: "appliance12.jpg",
+                description: "Classic Roman tile design, matte finish, 30 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 13,
+                name: "Roman Tile Matte 28g",
+                price: 780,
+                category: "Appliances",
+                image: "appliance13.jpg",
+                description: "Premium Roman tile design, matte finish, 28 gauge.",
+                likes: 1,
+                rating: 4
+            },
+            
+            {
+                id: 14,
+                name: "PVC Gutters (4M/pc,6pcs/bag)",
+                price: 1450,
+                category: "Appliances",
+                image: "appliance14.jpg",
+                description: "Durable PVC gutters, 4 meters per piece, 6 pieces per bag.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 15,
+                name: "Downspout (4M/pc,6pcs/bag)",
+                price: 1250,
+                category: "Appliances",
+                image: "appliance15.jpg",
+                description: "High-quality downspouts, 4 meters per piece, 6 pieces per bag.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 16,
+                name: "Drop Outlet (14pcs/ctn)",
+                price: 500,
+                category: "Appliances",
+                image: "appliance16.jpg",
+                description: "Essential gutter component, 14 pieces per carton.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 17,
+                name: "Hanger Single Hole (220pcs/ctn)",
+                price: 150,
+                category: "Appliances",
+                image: "appliance17.jpg",
+                description: "Single hole hangers for secure gutter installation, 220 pieces per carton.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 18,
+                name: "135°/90° Outside Corner (10pcs/ctn)",
+                price: 500,
+                category: "Appliances",
+                image: "appliance18.jpg",
+                description: "For perfect outside corner connections, 10 pieces per carton.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 19,
+                name: "90° Inside Corner (8pcs/ctn)",
+                price: 500,
+                category: "Appliances",
+                image: "appliance19.jpg",
+                description: "For seamless inside corner connections, 8 pieces per carton.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 20,
+                name: "90° Inside Corner (8pcs/ctn)",
+                price: 5000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0028.jpg",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 21,
+                name: "90° Inside Corner (8pcs/ctn)",
+                price: 5000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0029.jpg",
+                likes: 1,
+                rating: 4
+            },
+               {
+                id: 22,
+                price: 5000,
+                category: "spares",
+                image: "IMG-20250804-WA0030.jpg",
+                likes: 1,
+                rating: 4
+            },
+               {
+                id: 23,
+                price: 5000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0031.jpg",
+                likes: 1,
+                rating: 4
+            },
+               {
+                id: 24,
+                price: 5000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0032.jpg",
+                likes: 1,
+                rating: 4
+            },
+               {
+                id: 25,
+                price: 5000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0033.jpg",
+                likes: 1,
+                rating: 4
+            },
+               {
+                id: 26,
+                price: 5000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0034.jpg",
+                likes: 1,
+                rating: 4
+            },
+               {
+                id: 27,
+                price: 5000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0035.jpg",
+                likes: 1,
+                rating: 4
+            },
+               {
+                id: 28,
+                price: 5000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0036.jpg",
+                likes: 1,
+                rating: 4
+            },
+               {
+                id: 29,
+                price: 5000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0037.jpg",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 30,
+                name: "Converter (45pcs/box)",
+                price: 350,
+                category: "Appliances",
+                image: "IMG-20250804-WA0038.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 31,
+                name: "Converter (45pcs/box)",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0039.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 32,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0040.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 33,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0041.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 34,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0042.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 35,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0043.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 36,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0044.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 37,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0045.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 38,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0046.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 39,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0047.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 40,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0048.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 41,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0049.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 42,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0050.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 43,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0051.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 44,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0052.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 45,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0053.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 46,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0054.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 47,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0055.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 48,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0056.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 49,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0057.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 50,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0058.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 51,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0059.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 52,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0060.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 53,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0061.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 54,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0062.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 55,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0063.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 56,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0064.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 57,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0065.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 58,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0066.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 59,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0067.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 60,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0068.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 61,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0069.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 62,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0070.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 63,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0071.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 64,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0072.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 65,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0073.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 66,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0074.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 67,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0075.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 68,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0076.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 69,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0077.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 70,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0078.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 71,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0079.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 72,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0080.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 73,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0081.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 74,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0082.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 75,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0083.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 76,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0084.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 77,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0085.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 78,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0086.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 79,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0087.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 80,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0088.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 81,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0089.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 82,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0090.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 83,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0091.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 84,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0092.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 85,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0093.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 86,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0094.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 87,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0095.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 88,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0096.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 89,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0097.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 90,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0098.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 91,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0099.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            {
+                id: 92,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0100.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 93,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0101.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 94,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0102.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 95,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0103.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 96,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0104.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 97,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0106.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 98,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0107.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 99,
+                name: "Sugarcane Juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250804-WA0108.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 100,
+                name: "electronic",
+                price: 35000,
+                category: "Appliances",
+                image: "electronic1.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 101,
+                name: "electronic",
+                price: 35000,
+                category: "Appliances",
+                image: "electronic2.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 102,
+                name: "electronic",
+                price: 35000,
+                category: "Appliances",
+                image: "electronic3.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 103,
+                name: "electronic",
+                price: 35000,
+                category: "Appliances",
+                image: "electronic4.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 104,
+                name: "electronic",
+                price: 35000,
+                category: "Appliances",
+                image: "electronic5.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 105,
+                name: "electronic",
+                price: 35000,
+                category: "Appliances",
+                image: "electronic6.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+            //bikes
+             {
+                id: 106,
+                name: "Girl bike size 20",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike1.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 107,
+                name: "Girl bike size 20",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike2.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 108,
+                name: "Girl bike size 20",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike3.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+              {
+                id: 109,
+                name: "Luta size 20 - all colours",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike4.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 110,
+                name: "Luta size 20 - all colours",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike5.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 111,
+                name: "Luta size 20 - all colours",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike6.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 112,
+                name: "Luta size 20 - all colours",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike7.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 113,
+                name: "Luta size 20 with reflector",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike8.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 114,
+                name: "Luta size 20 with reflector",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike9.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 115,
+                name: "Luta size 20 with reflector",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike10.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 116,
+                name: "Luta size 20 with reflector",
+                price: 8500,
+                category: "Bicycles",
+                image: "bike11.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+            //spares
+            
+              {
+                id: 117,
+                name: "spares",
+                price: 5000,
+                category: "Spares",
+                image: "spare1.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 118,
+                name: "CCTV camera",
+                price: 3500,
+                category: "appliances",
+                image: "spare2.jpg",
+                description: "For transitioning between different downspout sizes, 45 pieces per box.",
+                likes: 1,
+                rating: 4
+            },
+            //construction & repair 
+             {
+                id: 119,
+                name: "50 mtrs sprayer pipe",
+                price: 5500,
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0004.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 120,
+                name: "Hose pipe",
+                price: 35000,
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0005.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 121,
+                name: "Hose pipe",
+                price: 35000,
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0006.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 122,
+                name: "Canvas delivery hose pipes",
+                price: "5000, 8500",
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0007.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 123,
+                name: "Rutan solar pump 400w 50m",
+                price:"0.5hp(head18m )8500,   1.0hp  (35m head)10500",
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0008.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 124,
+                name: "Max polar submersible electric pump",
+                 price:"0.5hp(18m head)8500,   1.0hp  (35m head)10500",
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0009.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 125,
+                name: "Max polar submersible sewer pumps",
+                price:"2.0hp (230L/min height 25m)17000,   3.0hp (310L/min height 35m)20000",
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0010.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 126,
+                name: "Meakida demolition harmer",
+                price: 18000,
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0011.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 127,
+                name: "Sugarcane juicer",
+                price: 35000,
+                category: "Appliances",
+                image: "IMG-20250806-WA0012.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 128,
+                name: "Dera 4 in 1 trimmer brush cutter",
+                price: 24500,
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0013.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 129,
+                name: "Hose pipe",
+                price: 5000,
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0014.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 130,
+                name: "Dera 7 circular saw ",
+                price: 7500,
+                category: "Construction & Repairs",
+                image: "IMG-20250806-WA0015.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 131,
+                name: "Vitron smart TV 43",
+                price: 2000,
+                category: "Appliances",
+                image: "IMG-20250806-WA0016.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },
+             {
+                id: 132,
+                name: "Nunix hot and normal dispenser",
+                price: 3500,
+                category: "Appliances",
+                image: "IMG-20250806-WA0017.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 133,
+                name: "Ailyons 2 burner",
+                price: 3000,
+                category: "Appliances",
+                image: "IMG-20250806-WA0018.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            },  
+             {
+                id: 134,
+                name: "Kitchen scale digital",
+                price: 700,
+                category: "Appliances",
+                image: "IMG-20250806-WA0019.jpg",
+                description: "Premium stone-coated steel roofing with 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 135,
+                name: "Assembled executive office chair",
+                price: 5000,
+                category: "Spares",
+                image: "IMG-20250806-WA0020.jpg",
+                description: "Premium with comfotable headrest 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }, 
+             {
+                id: 136,
+                name: "Secretarial mesh office char with headrest ",
+                price: 7500,
+                category: "Spares",
+                image: "IMG-20250806-WA0021.jpg",
+                description: "Premium with comfotable headrest 15-year warranty.",
+                likes: 1,
+                rating: 4
+            }
+        ];
         
         // Cart Functionality
         let cart = [];
         
         // Render Products
-        function renderProducts(category = 'all') {
+        function renderProducts(category = 'all', searchTerm = '') {
             const productsGrid = document.getElementById('products-grid');
             productsGrid.innerHTML = '';
             
-            const filteredProducts = category === 'all' 
+            let filteredProducts = category === 'all' 
                 ? products 
                 : products.filter(product => product.category === category);
+            
+            // Apply search filter if search term exists
+            if (searchTerm) {
+                const searchLower = searchTerm.toLowerCase();
+                filteredProducts = filteredProducts.filter(product => 
+                    product.name.toLowerCase().includes(searchLower) || 
+                    (product.description && product.description.toLowerCase().includes(searchLower))
+                );
+            }
+            
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = '<div class="no-results" style="grid-column: 1/-1; text-align: center; padding: 40px;">No products found matching your search</div>';
+                return;
+            }
             
             filteredProducts.forEach(product => {
                 const productCard = document.createElement('div');
@@ -2877,6 +3242,23 @@ const products = [
                         <div class="product-meta">
                             <span>Per ${product.category === 'mabati' ? 'sheet' : 'piece'}</span>
                         </div>
+                        
+                        <!-- Rating System -->
+                        <div class="rating-container">
+                            ${[1,2,3,4,5].map(star => `
+                                <span class="rating-star ${star <= product.rating ? 'active' : ''}" 
+                                      data-product-id="${product.id}" 
+                                      data-rating="${star}">★</span>
+                            `).join('')}
+                            <span class="rating-value">${product.rating}.0</span>
+                        </div>
+                        
+                        <!-- Like Button -->
+                        <div class="like-container">
+                            <button class="like-btn" data-product-id="${product.id}">❤️</button>
+                            <span class="like-count">${product.likes}</span>
+                        </div>
+                        
                         <div class="product-actions">
                             <a href="https://wa.me/254724632344?text=I%20want%20to%20order%20${encodeURIComponent(product.name)}%20for%20KSh%20${product.price.toLocaleString()}" 
                                class="whatsapp-button" target="_blank">
@@ -2888,14 +3270,78 @@ const products = [
                 `;
                 productsGrid.appendChild(productCard);
             });
+            
+            // Add event listeners for like buttons
+            document.querySelectorAll('.like-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = parseInt(this.dataset.productId);
+                    const product = products.find(p => p.id === productId);
+                    
+                    if (this.classList.contains('liked')) {
+                        // Unlike
+                        this.classList.remove('liked');
+                        product.likes--;
+                    } else {
+                        // Like
+                        this.classList.add('liked');
+                        product.likes++;
+                    }
+                    
+                    // Update like count display
+                    this.nextElementSibling.textContent = product.likes;
+                });
+            });
+            
+            // Add event listeners for rating stars
+            document.querySelectorAll('.rating-star').forEach(star => {
+                star.addEventListener('click', function() {
+                    const productId = parseInt(this.dataset.productId);
+                    const rating = parseInt(this.dataset.rating);
+                    const product = products.find(p => p.id === productId);
+                    
+                    // Update product rating
+                    product.rating = rating;
+                    
+                    // Update stars display
+                    const stars = this.parentElement.querySelectorAll('.rating-star');
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                    
+                    // Update rating value display
+                    this.parentElement.querySelector('.rating-value').textContent = `${rating}.0`;
+                });
+            });
         }
+        
+        // Search Products
+        function searchProducts() {
+            const searchInput = document.getElementById('product-search');
+            const searchTerm = searchInput.value.trim();
+            const activeTab = document.querySelector('.category-tab.active');
+            const category = activeTab ? activeTab.dataset.category : 'all';
+            
+            renderProducts(category, searchTerm);
+        }
+        
+        // Add event listener for Enter key in search input
+        document.getElementById('product-search').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
         
         // Category Tabs
         document.querySelectorAll('.category-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 document.querySelector('.category-tab.active').classList.remove('active');
                 this.classList.add('active');
-                renderProducts(this.dataset.category);
+                const searchInput = document.getElementById('product-search');
+                renderProducts(this.dataset.category, searchInput.value.trim());
             });
         });
         
@@ -2997,45 +3443,6 @@ const products = [
             cart = cart.filter(item => item.id !== productId);
             updateCart();
         }
-        // Checkout
-document.getElementById('checkout-btn').addEventListener('click', function() {
-    if (cart.length === 0) {
-        alert('Your cart is empty. Please add some products before checking out.');
-        return;
-    }
-    
-    // Close cart
-    closeCartFunc();
-    
-    // Scroll to contact form
-    document.querySelector('#contact').scrollIntoView({
-        behavior: 'smooth'
-    });
-    
-    // Generate order summary for message field
-    let orderSummary = 'ORDER DETAILS:\n\n';
-    let total = 0;
-    
-    cart.forEach(item => {
-        orderSummary += `${item.name} x ${item.quantity} = KSh ${(item.price * item.quantity).toLocaleString()}\n`;
-        total += item.price * item.quantity;
-    });
-    
-    orderSummary += `\nTOTAL: KSh ${total.toLocaleString()}`;
-    
-    // Populate the form fields
-    document.getElementById('cart_summary').value = orderSummary;
-    
-    // Highlight the form
-    const contactFormElement = document.querySelector('.contact-form');
-    contactFormElement.classList.add('form-highlight');
-    setTimeout(() => {
-        contactFormElement.classList.remove('form-highlight');
-    }, 2000);
-    
-    // Focus on name field
-    document.getElementById('name').focus();
-});
         
         // Notification
         function showNotification(message) {
@@ -3059,30 +3466,6 @@ document.getElementById('checkout-btn').addEventListener('click', function() {
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             renderProducts();
-            
-            // Add notification style
-            const style = document.createElement('style');
-            style.textContent = `
-                .notification {
-                    position: fixed;
-                    bottom: 20px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: var(--primary);
-                    color: white;
-                    padding: 12px 24px;
-                    border-radius: var(--border-radius);
-                    box-shadow: var(--card-shadow);
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                    z-index: 1000;
-                }
-                
-                .notification.show {
-                    opacity: 1;
-                }
-            `;
-            document.head.appendChild(style);
         });
         
         // Smooth scrolling for anchor links
@@ -3101,9 +3484,7 @@ document.getElementById('checkout-btn').addEventListener('click', function() {
                     });
                 }
             });
-              });
+        });
     </script>
 </body>
-
-
 </html>
